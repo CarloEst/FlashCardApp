@@ -17,7 +17,10 @@ export default function Generate() {
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
-  
+
+    const goToFlashcards = () => {
+        router.push('/flashcards')
+    }
 
   
     const handleSubmit = async () => {
@@ -92,15 +95,22 @@ export default function Generate() {
                 variant="outlined"
                 sx={{ mb: 2 }}
                 />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSubmit}
-                fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
                 >
-                    {''}
                     Submit
                 </Button>
+                <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={goToFlashcards}
+                    >
+                        View Saved Flashcards
+                    </Button>
+                </Box>
             </Box>
         
             {flashcards.length > 0 && (
@@ -167,6 +177,11 @@ export default function Generate() {
                             Save
                         </Button>
 
+                    </Box>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                        <Button variant='contained' color='primary' onClick={goToFlashcards}>
+                            View Saved Flashcards
+                        </Button>
                     </Box>
                 </Box>
             )}
