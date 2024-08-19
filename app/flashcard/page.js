@@ -4,13 +4,16 @@ import { useEffect, useState } from "react"
 import {collection, doc, getDoc, getDocs} from 'firebase/firestore'
 import { Container, Box, Typography, TextField, Button, Grid, Card, CardContent, CardActionArea, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material'
 import { db } from "../../firebase"
+import { useRouter } from "next/navigation"
 import { useSearchParams } from "next/navigation"
+import BackButton from '../../BackButton';
 
 
 export default function Flashcard() {
     const { isLoaded, isSignedIn, user } = useUser()
     const [flashcards, setFlashcards] = useState([])
     const [flipped, setFlipped] = useState({})
+    const router = useRouter()
   
     const searchParams = useSearchParams()
     const search = searchParams.get('id')
@@ -30,12 +33,17 @@ export default function Flashcard() {
         getFlashcard()
       }, [search, user])
 
+      const goToHome = () => {
+        router.push('/')
+    }
+
       const handleCardClick = (id) => {
         setFlipped((prev) => ({
           ...prev,
           [id]: !prev[id],
         }))
       }
+      
 
       if (!isLoaded || !isSignedIn) {
         return <></>
@@ -43,6 +51,16 @@ export default function Flashcard() {
 
       return (
         <Container maxWidth="100vw">
+          <Box sx={{ my: 4 }}>
+                <Box sx={{ position: 'absolute', top: 0, left: 0 }}>
+                    <BackButton />
+                </Box>
+                <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                    <Button variant="contained" color="primary" onClick={goToHome}>
+                        Flashcards SaaS
+                    </Button>
+                </Box>
+          </Box>
             <Grid container spacing={3} sx={{mt: 4}}>
 
                     {flashcards.map((flashcard, index) => (

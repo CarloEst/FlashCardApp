@@ -6,9 +6,7 @@ import {writeBatch, collection, doc, getDoc} from 'firebase/firestore'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { db } from '../../firebase'
-
-
-
+import BackButton from '../../BackButton';
 export default function Generate() {
     const { isLoaded, isSignedIn, user } = useUser()
     const [flashcards, setFlashcards] = useState([])
@@ -17,7 +15,14 @@ export default function Generate() {
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
-  
+
+    const goToFlashcards = () => {
+        router.push('/flashcards')
+    }
+
+    const goToHome = () => {
+        router.push('/')
+    }
 
   
     const handleSubmit = async () => {
@@ -79,6 +84,14 @@ export default function Generate() {
       return(
         <Container maxWidth="md">
             <Box sx={{ my: 4 }}>
+            <Box sx={{ position: 'absolute', top: 0, left: 0 }}>
+                    <BackButton />
+                </Box>
+                <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                    <Button variant="contained" color="primary" onClick={goToHome}>
+                        Flashcards SaaS
+                    </Button>
+                </Box>
                 <Typography variant="h4" component="h1" gutterBottom>
                 Generate Flashcards
                 </Typography>
@@ -92,15 +105,22 @@ export default function Generate() {
                 variant="outlined"
                 sx={{ mb: 2 }}
                 />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSubmit}
-                fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
                 >
-                    {''}
                     Submit
                 </Button>
+                <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={goToFlashcards}
+                    >
+                        View Saved Flashcards
+                    </Button>
+                </Box>
             </Box>
         
             {flashcards.length > 0 && (
@@ -167,6 +187,11 @@ export default function Generate() {
                             Save
                         </Button>
 
+                    </Box>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                        <Button variant='contained' color='primary' onClick={goToFlashcards}>
+                            View Saved Flashcards
+                        </Button>
                     </Box>
                 </Box>
             )}
