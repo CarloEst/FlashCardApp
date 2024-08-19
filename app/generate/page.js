@@ -6,9 +6,7 @@ import {writeBatch, collection, doc, getDoc} from 'firebase/firestore'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { db } from '../../firebase'
-
-
-
+import BackButton from '../../BackButton';
 export default function Generate() {
     const { isLoaded, isSignedIn, user } = useUser()
     const [flashcards, setFlashcards] = useState([])
@@ -20,6 +18,10 @@ export default function Generate() {
 
     const goToFlashcards = () => {
         router.push('/flashcards')
+    }
+
+    const goToHome = () => {
+        router.push('/')
     }
 
   
@@ -82,6 +84,14 @@ export default function Generate() {
       return(
         <Container maxWidth="md">
             <Box sx={{ my: 4 }}>
+            <Box sx={{ position: 'absolute', top: 0, left: 0 }}>
+                    <BackButton />
+                </Box>
+                <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                    <Button variant="contained" color="primary" onClick={goToHome}>
+                        Flashcards SaaS
+                    </Button>
+                </Box>
                 <Typography variant="h4" component="h1" gutterBottom>
                 Generate Flashcards
                 </Typography>
