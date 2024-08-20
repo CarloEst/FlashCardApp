@@ -105,7 +105,7 @@ export default function Generate() {
                 variant="outlined"
                 sx={{ mb: 2 }}
                 />
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }} >
                 <Button
                     variant="contained"
                     color="primary"
@@ -119,7 +119,7 @@ export default function Generate() {
                         onClick={goToFlashcards}
                     >
                         View Saved Flashcards
-                    </Button>
+                </Button>
                 </Box>
             </Box>
         
@@ -182,8 +182,19 @@ export default function Generate() {
                         </Grid>
                     ))}
                     </Grid>
-                    <Box sx={{mt:4, display: 'flex', justifyContent:'center'}}>
-                        <Button variant='contained' color='secondary' onClick={handleOpen}>
+                    <Box sx={{mt:4, display: 'flex', justifyContent:'center', gap: 2}}>
+                        <Button variant='contained' color='secondary' 
+                        sx={{
+                            py: 1.5,
+                            px: 4,
+                            borderRadius: '50px',
+                            boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                transition: '0.3s'
+                            },
+                        }}
+                        onClick={handleOpen}>
                             Save
                         </Button>
 
