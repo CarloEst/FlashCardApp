@@ -105,7 +105,6 @@ export default function Flashcard() {
             </Button>
           </Box>
 
-
           <Typography variant="h4" component="h1" sx={{ textAlign: 'center', color: 'white', mb: 4 }}>
             Your Flashcard Sets
           </Typography>

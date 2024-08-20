@@ -5,6 +5,7 @@ import { Container, Box, Typography, AppBar, Toolbar, Button } from '@mui/materi
 import { SignIn } from '@clerk/nextjs';
 import Link from 'next/link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/navigation'
 
 const theme = createTheme({
   palette: {
@@ -31,12 +32,18 @@ const theme = createTheme({
 });
 
 export default function SignUpPage() {
+    const router = useRouter();
+
+    const goToHome = () => {
+        router.push('/')
+    }
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth={false} sx={{ px: 4, py: 4, background: 'linear-gradient(135deg, #5C258D 30%, #4389A2 90%)', minHeight: '100vh' }}>
         <AppBar position="sticky" sx={{ mb: 2, backgroundColor: 'transparent', boxShadow: 'none', mt: -2 }}>
           <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" sx={{ flexGrow: 1 }} onClick={goToHome}>
               FlashBro
             </Typography>
             <Button

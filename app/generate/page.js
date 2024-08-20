@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { db } from '../../firebase'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import BackButton from '../../BackButton';
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,15 @@ export default function Generate() {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  
+  
+    const goToFlashcards = () => {
+        router.push('/flashcards')
+    }
+
+    const goToHome = () => {
+        router.push('/')
+    }
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -46,6 +56,9 @@ export default function Generate() {
   const handleCardClick = (id) => {
     setFlipped(prev => ({ ...prev, [id]: !prev[id] }))
   }
+  
+   const handleOpen = () => {setOpen(true)}
+   const handleClose = () => {setOpen(false)}
 
   const saveFlashcards = async () => {
     if (!name.trim()) {
@@ -252,10 +265,23 @@ export default function Generate() {
                         </CardActionArea>
                       </Card>
                     </Grid>
+
                   ))}
                 </Grid>
-                <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                  <Button variant='contained' color='secondary' onClick={() => setOpen(true)}>
+                <Box sx={{mt:4, display: 'flex', justifyContent:'center', gap: 2}}>
+                        <Button variant='contained' color='secondary' 
+                        sx={{
+                            py: 1.5,
+                            px: 4,
+                            borderRadius: '50px',
+                            boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                transition: '0.3s'
+                            },
+                        }}
+                        onClick={handleOpen}>
+                           
                     Save
                   </Button>
                 </Box>

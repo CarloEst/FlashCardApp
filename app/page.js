@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from 'react';
 import { Container, Box, Typography, AppBar, Toolbar, Button, Grid, Paper, IconButton } from '@mui/material';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Head from 'next/head';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -35,7 +37,11 @@ const theme = createTheme({
   },
 });
 
+
 export default function Home() {
+  const { isLoaded, isSignedIn } = useUser();
+    const router = useRouter();
+  
   const handleSubmit = async () => {
     const checkoutSession = await fetch('/api/checkout_session', {
       method: 'POST',
@@ -60,6 +66,19 @@ export default function Home() {
       console.warn(error.message);
     }
   };
+  const goToFlashcards = () => {
+    router.push('/flashcards')
+  }
+
+  const handleStartForFreeClick = () => {
+    if (!isSignedIn) {
+      window.alert('You need to sign in first.');
+      router.push('/sign-in'); // Replace with the actual path to the next page
+    } else {
+      router.push('/generate');
+    }
+  };
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -122,6 +141,52 @@ export default function Home() {
           </Typography>
           <Typography variant="h5" component="h2" gutterBottom>
             The easiest way to create flashcards from your text.
+          </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              mt: 4,
+              mr: 2,
+              py: 1.5,
+              px: 4,
+              borderRadius: '50px',
+              boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                transition: '0.3s'
+              },
+            }}
+            onClick={handleStartForFreeClick}
+          >
+            Start for Free
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            sx={{
+              mt: 4,
+              py: 1.5,
+              px: 4,
+              borderRadius: '50px',
+              borderColor: 'white',
+              color: 'white',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                transition: '0.3s'
+              },
+            }}
+            onClick={goToFlashcards}
+          >
+            View Saved Flashcards
+          </Button>
+        </Box>
+
+        <Box sx={{ my: 8 }}>
+          <Typography variant="h4" component="h2" gutterBottom sx={{ color: 'white', fontWeight: 700, textAlign: 'center' }}>
+            Features
+          </Typography>
+=======
           </Typography>
           <Button
             variant="contained"
