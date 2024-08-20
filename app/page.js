@@ -90,7 +90,7 @@ export default function Home() {
         <AppBar position="sticky" sx={{ mb: 2, backgroundColor: 'transparent', boxShadow: 'none', mt: -2 }}>
           <Toolbar>
             <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
-              Flashcard SaaS
+              FlashBro
             </Typography>
             <SignedOut>
               <Button
@@ -103,13 +103,13 @@ export default function Home() {
                   py: 0.5,
                   mr: 3,
                   '&:hover': {
-                    boxShadow: '0px 8px 15px rgba(106, 27, 154, 0.3)',
+                    boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.3)',
                     transform: 'scale(1.05)',
                     transition: '0.3s'
                   },
                 }}
               >
-                Log In
+                Sign In
               </Button>
               <Button
                 color="inherit"
@@ -120,7 +120,7 @@ export default function Home() {
                   px: 1,
                   py: 0.5,
                   '&:hover': {
-                    boxShadow: '0px 8px 15px rgba(106, 27, 154, 0.3)',
+                    boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.3)',
                     transform: 'scale(1.05)',
                     transition: '0.3s'
                   },
@@ -137,7 +137,7 @@ export default function Home() {
 
         <Box sx={{ textAlign: 'center', color: 'white', mb: 6 }}>
           <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to Flashcard SaaS
+            Welcome to FlashBro
           </Typography>
           <Typography variant="h5" component="h2" gutterBottom>
             The easiest way to create flashcards from your text.
@@ -179,51 +179,6 @@ export default function Home() {
             onClick={goToFlashcards}
           >
             View Saved Flashcards
-          </Button>
-        </Box>
-
-        <Box sx={{ my: 8 }}>
-          <Typography variant="h4" component="h2" gutterBottom sx={{ color: 'white', fontWeight: 700, textAlign: 'center' }}>
-            Features
-          </Typography>
-=======
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            sx={{
-              mt: 4,
-              mr: 2,
-              py: 1.5,
-              px: 4,
-              borderRadius: '50px',
-              boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                transition: '0.3s'
-              },
-            }}
-            href="/generate"
-          >
-            Start for Free
-          </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            sx={{
-              mt: 4,
-              py: 1.5,
-              px: 4,
-              borderRadius: '50px',
-              borderColor: 'white',
-              color: 'white',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                transition: '0.3s'
-              },
-            }}
-          >
-            Get More with Pro
           </Button>
         </Box>
 
@@ -320,7 +275,7 @@ export default function Home() {
 
         <Box sx={{ mt: 8, pt: 4, textAlign: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
           <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-            © 2024 Flashcard SaaS. All rights reserved. 
+            © 2024 FlashBro. All rights reserved. 
           </Typography>
         </Box>
       </Container>
