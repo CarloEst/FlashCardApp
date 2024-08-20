@@ -38,11 +38,10 @@ const theme = createTheme({
 });
 
 
-
-
 export default function Home() {
   const { isLoaded, isSignedIn } = useUser();
     const router = useRouter();
+  
   const handleSubmit = async () => {
     const checkoutSession = await fetch('/api/checkout_session', {
       method: 'POST',
@@ -67,7 +66,6 @@ export default function Home() {
       console.warn(error.message);
     }
   };
-
   const goToFlashcards = () => {
     router.push('/flashcards')
   }
@@ -181,6 +179,51 @@ export default function Home() {
             onClick={goToFlashcards}
           >
             View Saved Flashcards
+          </Button>
+        </Box>
+
+        <Box sx={{ my: 8 }}>
+          <Typography variant="h4" component="h2" gutterBottom sx={{ color: 'white', fontWeight: 700, textAlign: 'center' }}>
+            Features
+          </Typography>
+=======
+          </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              mt: 4,
+              mr: 2,
+              py: 1.5,
+              px: 4,
+              borderRadius: '50px',
+              boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                transition: '0.3s'
+              },
+            }}
+            href="/generate"
+          >
+            Start for Free
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            sx={{
+              mt: 4,
+              py: 1.5,
+              px: 4,
+              borderRadius: '50px',
+              borderColor: 'white',
+              color: 'white',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                transition: '0.3s'
+              },
+            }}
+          >
+            Get More with Pro
           </Button>
         </Box>
 
