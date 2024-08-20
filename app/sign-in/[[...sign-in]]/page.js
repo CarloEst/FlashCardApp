@@ -1,14 +1,22 @@
+'use client'
 import React from 'react'
 import { Container, Box, Typography, AppBar, Toolbar, Button } from '@mui/material'
 import { SignIn } from '@clerk/nextjs'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function SignUpPage() {
+    const router = useRouter();
+
+    const goToHome = () => {
+        router.push('/')
+    }
+
   return (
     <Container maxWidth="100vw">
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" sx={{flexGrow: 1}}>
+                <Typography variant="h6" sx={{flexGrow: 1}} onClick={goToHome}>
                 Flashcard SaaS
                 </Typography>
                 <Button color="inherit">
